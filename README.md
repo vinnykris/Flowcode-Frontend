@@ -1,15 +1,29 @@
 # FrontEnd-Homework
-Hiring project for a frontend developer
+Project boilerplate was created using create-react-app and typeScript
 
-Project boilerplate created using create-react-app and typeScript
+## Project Details
+As a campaign manager at DTX I want to create a campaign with a series of different tests.  I would like to test 2 different creative variables.
 
-# Requirements
-create-react-app
-React hooks
-React router
-Redux
-TypeScript
-Material UI
+- Color of QR code - Variable
+    - Blue - Value
+    - Green - Value
+- Call To Action - Variable
+    - Scan Here - Value
+    - Point. Aim. Shoot - Value 
+
+Assume I want to create a permutations testing every possible combination of variable values. I would like a wizard that will automatically generate that list and allow me to select 1 to N number of permutations to use for this campaign.
+
+***A permutation is considered a single combination of variable values to be tested.***
+
+## Objective / Techincal Requirements
+
+- Fetch the permutation data from `https://flowcode.com/mock-api-data` to display a list of possible permutations
+- Allow the user to select 1 to N number of permutations from the list
+- In the next screen display the selected permutations
+- UI/UX is up to the developers discretion
+- Use any MIT licensed frameworks
+- Use TypeScript
+- It is NOT required to POST the selected data
  
 # Documentation guide
 

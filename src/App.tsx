@@ -8,7 +8,7 @@ const App: React.FC = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <h3> Permutation Wizards </h3>
+        <h3> Permutation Wizard</h3>
       </header>
     </div>
   );
