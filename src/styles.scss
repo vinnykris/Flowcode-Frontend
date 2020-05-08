@@ -1,5 +1,47 @@
 @import "~bootstrap/scss/bootstrap";
 
+// Sass main styles
+// mixin reference - Hugo Giraudel https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+
+$breakpoints: (
+  "x-small": (
+    max-width: 414px,
+  ),
+  "small": (
+    max-width: 600px,
+  ),
+  "medium": (
+    max-width: 800px,
+  ),
+  "large": (
+    max-width: 1024px,
+  ),
+  "x-large": (
+    max-width: 1440px,
+  ),
+  "xx-large": (
+    max-width: 1880px,
+  ),
+  "xxx-large": (
+    min-width: 1881px,
+  ),
+) !default;
+
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
 // Set font family to Helvetica globally
 * {
   font-family: Helvetica;
@@ -10,15 +52,30 @@ h3 {
   color: grayscale($color: #5c5656);
 }
 
+// Main header
 .header {
   margin: 2%;
   text-align: center;
 }
 
+// Main title
 .permutation-wizard {
   margin: auto;
   text-transform: uppercase;
   font-weight: bold;
+  @include respond-to("large") {
+    font-size: 1.8rem;
+  }
+  @include respond-to("x-small") {
+    font-size: 1.4rem;
+  }
+}
+
+// User instructions
+.instructions {
+  @include respond-to("large") {
+    font-size: 1rem;
+  }
 }
 
 // Main Content sizing
@@ -26,6 +83,15 @@ h3 {
   width: 25%;
   height: auto;
   margin: auto;
+  @include respond-to("large") {
+    width: 30%;
+  }
+  @include respond-to("medium") {
+    width: 50%;
+  }
+  @include respond-to("small") {
+    width: 70%;
+  }
 }
 
 // Done/Back button styling
@@ -36,6 +102,12 @@ h3 {
   padding: 5px 15px;
   border-radius: 8px;
   font-weight: bold;
+  @include respond-to("medium") {
+    margin-top: 6%;
+  }
+  @include respond-to("small") {
+    margin-top: 10%;
+  }
 }
 
 // Done button color
@@ -73,20 +145,30 @@ h3 {
   filter: invert(1);
 }
 
+// Permutation "Card" style
 .permutation {
   padding: 5%;
 }
 
+// Permutation text
 .permutation-text {
   text-transform: uppercase;
   font-weight: bold;
+  @include respond-to("large") {
+    font-size: 1.5rem;
+  }
+  @include respond-to("medium") {
+    font-size: 1.1rem;
+  }
 }
 
+// Brand name placement
 .brand {
   margin-top: -5%;
   margin-bottom: 5%;
 }
 
+// Call to action placement
 .call-to-action {
   margin-top: 2%;
 }
@@ -97,10 +179,12 @@ h3 {
   height: 75%;
 }
 
+// Background color of selected permutation
 .selected {
   background-color: rgba(136, 202, 128, 0.637);
 }
 
+// Container for flowcode and call to action
 .permutation-container {
   padding: 10%;
 }

@@ -47,12 +47,13 @@ const App: React.FC = () => {
         setPermutations(res);
         setIsLoading(false);
       })
+      // Catches invalid url
       .catch((error) => console.log(error));
   }, []);
 
   return (
     <div className="App">
-      {isLoading && <p className="loading">Loading Permutation Wizard...</p>}
+      {isLoading && <p>Loading Permutation Wizard...</p>}
       {!isLoading && <PermutationScroller permutations={permutations} />}
     </div>
   );
@@ -128,7 +129,9 @@ const PermutationScroller = ({ permutations }: PermutationScrollerProps) => {
         <div>
           <div className="header">
             <h1 className="permutation-wizard">Choose Permutations</h1>
-            <h5>To choose a permutation, click on the QR code.</h5>
+            <h5 className="instructions">
+              To choose a permutation, click on the QR code.
+            </h5>
           </div>
           <div className="main-content">
             <div className="carousel-container">
@@ -157,7 +160,9 @@ const PermutationScroller = ({ permutations }: PermutationScrollerProps) => {
         <div>
           <div className="header">
             <h1 className="permutation-wizard">Selected Permutations</h1>
-            <h5>These are the permutations you chose to test.</h5>
+            <h5 className="instructions">
+              These are the permutations you chose to test.
+            </h5>
           </div>
           <div className="main-content">
             <div className="carousel-container">
@@ -226,7 +231,7 @@ const PermutationView = ({
 
   return (
     <div className="permutation">
-      <h5 className="permutation-text brand">Brand Name: {brand[0]}</h5>
+      <h5 className="permutation-text brand">Brand: {brand[0]}</h5>
       {shouldSelect && selected && (
         <div className="permutation-container selected">
           <img
